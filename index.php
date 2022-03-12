@@ -1,3 +1,10 @@
+<?php 
+    require "base_connect.php";
+
+    $numRang = range(1,16);
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,22 +45,30 @@
                         <th>Datum</th>
                         <th>Projektant</th>
                         <th>Napomena</th>
-                        <th>EDIT</th>
+                        <!-- <th>EDIT</th> -->
                     </tr>
                 </thead>
                 <tbody class="mainTable">
-                    <!-- <tr>
-                        <td>T21-310.0</td>
-                        <td>25000</td>
-                        <td>11+2x2,5%/11 yd11</td>
-                        <td>11</td>
-                        <td>Tamara Petkovic</td>
-                        <td>proracunu</td>
-                        <td>02.12.2021</td>
-                        <td>S.Novakovic</td>
-                        <td>T21-8081.0</td>
-                        <td>Nemacka</td>
-                    </tr> -->
+                    <tr>
+                        <?php foreach($result as $info): ?>
+                            <th><?php echo $info['brojPonudeKeb'] ?></th>
+                            <th><?php echo $info['brojPonudeKelp'] ?></th>
+                            <th><?php echo $info['brojPonudeKelt'] ?></th>
+                            <th><?php echo $info['snaga'] ?></th>
+                            <th><?php echo $info['primar'] ?></th>
+                            <th><?php echo $info['sekundar'] ?></th>
+                            <th><?php echo $info['regulacija'] ?></th>
+                            <th><?php echo $info['sprega'] ?></th>
+                            <th><?php echo $info['uk'] ?></th>
+                            <th><?php echo $info['hladjenje'] ?></th>
+                            <th><?php echo $info['zemlja'] ?></th>
+                            <th><?php echo $info['kupac'] ?></th>
+                            <th><?php echo $info['komercijalista'] ?></th>
+                            <th><?php echo $info['datum'] ?></th>
+                            <th><?php echo $info['projektant'] ?></th>
+                            <th><?php echo $info['napomena'] ?></th>
+                        </tr>
+                        <?php endforeach ?>
                 </tbody>
             </table>
         </div>
@@ -64,29 +79,33 @@
         <div class="container">
             <h1>ADD DATABASE</h1>
             <div class="all-inputs">
-                <input class="br-ponude-input" type="text" placeholder="Broj Ponude KEB">
-                <input class="br-ponude-kelp-input" type="text" placeholder="Broj Ponude KEL (P)">
-                <input class="br-ponude-kelt-input" type="text" placeholder="Broj Ponude KEL (T)">
-                <input class="snaga-input" type="text" placeholder="Snaga (kVA)">
-                <input class="primar-input" type="text" placeholder="Primar (kV)">
-                <input class="sekundar-input" type="text" placeholder="Sekundar (kV)">
-                <input class="regulacija-input" type="text" placeholder="Regulacija">
-                <input class="sprega-input" type="text" placeholder="Sprega">
-                <input class="uk-input" type="text" placeholder="uk(%)">
-                <input class="hladnjenje-input" type="text" placeholder="Hladjenje">
-                <input class="zemlja-input" type="text" placeholder="Zemlja">
-                <input class="kupac-input" type="text" placeholder="Kupac">
-                <input class="komercijalista-input" type="text" placeholder="Komercijalista">
-                <input class="datum-input" type="date" placeholder="Datum">
-                <input class="projektant-input" type="text" placeholder="Projektant">
-                <input class="napomena-input" type="text" placeholder="Napomena">
-                <button class="send-btn">Send</button>
+                <form  class="formaa-main" action="insert.php" method="post" style="flex-direction: column; display: flex;">
+                
+                    <input class="br-ponude-input" name="brojPonudeKeb" type="text" placeholder="Broj Ponude KEB">
+                    <input class="br-ponude-kelp-input" name="brojPonudeKelp" type="text" placeholder="Broj Ponude KEL (P)">
+                    <input class="br-ponude-kelt-input" name="brojPonudeKelt" type="text" placeholder="Broj Ponude KEL (T)">
+                    <input class="snaga-input" name="snaga" type="text" placeholder="Snaga (kVA)">
+                    <input class="primar-input" name="primar" type="text" placeholder="Primar (kV)">
+                    <input class="sekundar-input" name="sekundar" type="text" placeholder="Sekundar (kV)">
+                    <input class="regulacija-input" name="regulacija" type="text" placeholder="Regulacija">
+                    <input class="sprega-input" name="sprega" type="text" placeholder="Sprega">
+                    <input class="uk-input" name="uk" type="text" placeholder="uk(%)">
+                    <input class="hladnjenje-input" name="hladjenje" type="text" placeholder="Hladjenje">
+                    <input class="zemlja-input" name="zemlja" type="text" placeholder="Zemlja">
+                    <input class="kupac-input" name="kupac" type="text" placeholder="Kupac">
+                    <input class="komercijalista-input" name="komercijalista" type="text" placeholder="Komercijalista">
+                    <input class="datum-input" name="datum" type="date" placeholder="Datum">
+                    <input class="projektant-input" name="projektant" type="text" placeholder="Projektant">
+                    <input class="napomena-input" name="napomena" type="text" placeholder="Napomena">
+                    <button  class="send-btn">Send</button>
+
+                </form>
             </div>
         </div>
     </div>
 
 
-    <div class="edit-add-database-view">
+    <!-- <div class="edit-add-database-view">
         <div class="container">
             <h1>EDIT DATABASE</h1>
             <div class="all-inputs">
@@ -109,9 +128,8 @@
                 <button class="edit-btn-form">Edit</button>
             </div>
         </div>
-    </div>
+    </div> -->
 
-    <script src="./database.js"></script>
     <script src="./script.js"></script>
 </body>
 </html>
