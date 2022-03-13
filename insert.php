@@ -1,6 +1,5 @@
 <?php 
 
-require 'helpers.php';
 require 'base_connect.php';
 
 $brojPonudeKeb = $_POST['brojPonudeKeb'];

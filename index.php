@@ -1,10 +1,6 @@
 <?php 
     require "base_connect.php";
-
-    $numRang = range(1,16);
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,23 +8,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css">
-    <title>Document</title>
+    <title>Kolektor Etra Data</title>
 </head>
 <body>
 
-    <header class="header-bar">
-        <div class="container">
+    <div class="top-header">
             <button class="header-btn-data">Database</button>
             <button class="header-btn-add">Add Database</button>
-        </div>
-    </header>
+    </div>
     
     <div class="table-data-view">
         <div class="container">
-            <h1>DATABASE</h1>
+            <div class="header-view">
+                <h1>DATABASE</h1>
+                <div class="filters">
+                    <input id="input_src" class="input-search" type="search" placeholder="pretraga" aria-label="Search">
+                </div>
+            </div>
             <table class="content-table">
                 <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Broj ponude KEB</th>
                         <th>Broj ponude KEL (P)</th>
                         <th>Broj ponude KEL (T)</th>
@@ -45,12 +45,13 @@
                         <th>Datum</th>
                         <th>Projektant</th>
                         <th>Napomena</th>
-                        <!-- <th>EDIT</th> -->
+                        <th>DELETE</th>
                     </tr>
                 </thead>
                 <tbody class="mainTable">
                     <tr>
                         <?php foreach($result as $info): ?>
+                            <th><?php echo $info['id'] ?></th>
                             <th><?php echo $info['brojPonudeKeb'] ?></th>
                             <th><?php echo $info['brojPonudeKelp'] ?></th>
                             <th><?php echo $info['brojPonudeKelt'] ?></th>
@@ -67,13 +68,13 @@
                             <th><?php echo $info['datum'] ?></th>
                             <th><?php echo $info['projektant'] ?></th>
                             <th><?php echo $info['napomena'] ?></th>
+                            <th><a class="del-btn" href="delete.php?id=<?php echo $info['id'] ?>">X</a></th>
                         </tr>
                         <?php endforeach ?>
                 </tbody>
             </table>
         </div>
     </div>
-
 
     <div class="input-add-database-view">
         <div class="container">
@@ -103,33 +104,9 @@
             </div>
         </div>
     </div>
-
-
-    <!-- <div class="edit-add-database-view">
-        <div class="container">
-            <h1>EDIT DATABASE</h1>
-            <div class="all-inputs">
-                <input class="ebr-ponude-input" type="text" placeholder="Broj Ponude KEB">
-                <input class="ebr-ponude-kelp-input" type="text" placeholder="Broj Ponude KEL (P)">
-                <input class="ebr-ponude-kelt-input" type="text" placeholder="Broj Ponude KEL (T)">
-                <input class="esnaga-input" type="text" placeholder="Snaga (kVA)">
-                <input class="eprimar-input" type="text" placeholder="Primar (kV)">
-                <input class="esekundar-input" type="text" placeholder="Sekundar (kV)">
-                <input class="eregulacija-input" type="text" placeholder="Regulacija">
-                <input class="esprega-input" type="text" placeholder="Sprega">
-                <input class="euk-input" type="text" placeholder="uk(%)">
-                <input class="ehladnjenje-input" type="text" placeholder="Hladjenje">
-                <input class="ezemlja-input" type="text" placeholder="Zemlja">
-                <input class="ekupac-input" type="text" placeholder="Kupac">
-                <input class="ekomercijalista-input" type="text" placeholder="Komercijalista">
-                <input class="edatum-input" type="date" placeholder="Datum">
-                <input class="eprojektant-input" type="text" placeholder="Projektant">
-                <input class="enapomena-input" type="text" placeholder="Napomena">
-                <button class="edit-btn-form">Edit</button>
-            </div>
-        </div>
-    </div> -->
-
+    <?php 
+        require "user_script.php";
+    ?>
     <script src="./script.js"></script>
 </body>
 </html>
